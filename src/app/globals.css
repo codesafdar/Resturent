@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #06b906;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* tailwind css container class customize */
+.container {
+  @apply max-w-screen-xl;
+}
+
+.center {
+  @apply flex items-center justify-center;
+}
+
+.primary_title {
+  @apply text-2xl font-bold sm:text-4xl md:text-5xl lg:text-6xl;
+}
+
+/* list items hover effect */
+.list_items > li {
+  position: relative;
+  transition: 0.4s;
+  line-height: 36px;
+  color: white;
+}
+.list_items > li:hover {
+  color: var(--primary);
+  cursor: pointer;
+}
+.list_items > li::before {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 0px;
+  background: var(--primary);
+  top: 100%;
+  left: 0;
+  transition: 0.4s;
+}
+.list_items > li:hover::before {
+  width: 100%;
+  transform: translateX(1);
+}
