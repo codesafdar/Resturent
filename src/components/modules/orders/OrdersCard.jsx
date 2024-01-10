@@ -3,7 +3,7 @@ import { CheckCircle2 } from "lucide-react";
 import NextImage from "@/components/common/NextImage";
 import ButtonUI from "@/components/common/ButtonUI";
 
-const OrdersCard = () => {
+const OrdersCard = ({obj}) => {
   return (
     <>
       <div className="bg-[#161616] rounded-xl p-8">

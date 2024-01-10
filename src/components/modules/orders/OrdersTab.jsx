@@ -28,7 +28,7 @@ const OrdersTab = ({orderlist}) => {
             <div className="grid mt-6 gap-x-16 gap-y-9 md:grid-cols-2">
               {
                 orderlist?.map((obj, index) =>(
-                  <OrdersCard />
+                  <OrdersCard obj={obj} />
                 ))
               }
              

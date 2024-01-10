@@ -6,12 +6,14 @@ import ButtonUI from "@/components/common/ButtonUI";
 import { X } from "lucide-react";
 import CartButton from "@/components/common/CartButton";
 
-const MenuDetailsModal = () => {
-  
+const MenuDetailsModal = ({isopn, setisopn, obj}) => {
+  const handleclose = () =>{
+    setisopn(false);
+  }
   return (
     <>
       <ModalUI
-        isOpen={false}
+        isOpen={isopn}
         // onOpenChange={onOpenChange}
         size="full"
         hideCloseButton={true}
@@ -21,6 +23,7 @@ const MenuDetailsModal = () => {
             isIconOnly
             color="default"
             className="absolute rounded-none top-5 right-5"
+            onClick={handleclose}
           >
             <X />
           </ButtonUI>
