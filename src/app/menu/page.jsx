@@ -45,7 +45,7 @@ const MenuMain = () => {
   return (
     <>
       <div>
-        <ul className="h-14 w-full bg-[#0D0D0D] flex items-center justify-center gap-12 border-t border-b border-[#5E5E5E]">
+        <ul className="h-14 w-full bg-[#0D0D0D] flex items-center justify-center gap-6 md:grap-0 sm:grap-0 border-t border-b border-[#5E5E5E]">
         {category?.map((items, index) => (
             <li
               key={items.name}

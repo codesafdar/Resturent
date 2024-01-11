@@ -24,7 +24,7 @@ const MenuDetailsModal = ({ isopn, setisopn, obj }) => {
 
   const addcartitem = async (obj) => {
     if (user?.token === '') {
-      setisopn(false);
+      // setisopn(false);
       onOpen(); // Open the login modal
     } else {
       dispatch(fetchcartList(obj));
@@ -34,6 +34,7 @@ const MenuDetailsModal = ({ isopn, setisopn, obj }) => {
   const handleclose = () => {
     setisopn(false);
   };
+  console.log('isOpen---', isOpen);
   return (
     <>
       <ModalUI isOpen={isopn} size="full" hideCloseButton={true}>
@@ -68,7 +69,7 @@ const MenuDetailsModal = ({ isopn, setisopn, obj }) => {
 
           <div className="mt-6">
             <h2 className="text-2xl font-semibold">Recommended Sides</h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-0 mt-3 md:max-w-[80%]">
+            <div className="grid grid-cols-4 md:grid-cols-5  mt-3 md:max-w-[100%]">
               <RecommendedMenuCard />
               <RecommendedMenuCard />
               <RecommendedMenuCard />
@@ -78,7 +79,7 @@ const MenuDetailsModal = ({ isopn, setisopn, obj }) => {
 
           <div className="mt-6">
             <h2 className="text-2xl font-semibold">Recommended Beverages</h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3 md:max-w-[80%]">
+            <div className="grid grid-cols-1 md:grid-cols-5  mt-3 md:max-w-[100%]">
               <RecommendedMenuCard />
               <RecommendedMenuCard />
               <RecommendedMenuCard />
@@ -87,12 +88,16 @@ const MenuDetailsModal = ({ isopn, setisopn, obj }) => {
           </div>
 
           <div className="sticky bottom-0 flex items-center justify-end gap-6 py-4 bg-[#171717] mt-14">
-            <h2 className="text-xl font-medium md:text-3xl">
+            {
+              user?.token === ''?
+              <h2 className="text-xl font-medium md:text-3xl">
               Log in to pay with Points
-            </h2>
-            <div className="flex items-center justify-center h-12 border border-gray-600 rounded px-7">
+            </h2>:''
+            }
+            
+            {/* <div className="flex items-center justify-center h-12 border border-gray-600 rounded px-7">
               <CartButton />
-            </div>
+            </div> */}
             <ButtonUI onClick={() => addcartitem(obj)} size="lg" className="px-10">
               Add to Cart
             </ButtonUI>

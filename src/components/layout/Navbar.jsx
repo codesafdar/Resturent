@@ -24,6 +24,7 @@ import { dispatch, useSelector } from "@/redux/store";
 import { signOut } from "@/redux/slices/user";
 
 const Navbar = () => {
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const cartitem = useSelector(state => state.cart?.cartitem);
   const user = useSelector(state => state.user);
@@ -73,21 +74,20 @@ const Navbar = () => {
                   <DropdownItem key="edit">Edit file</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-              <Link href="/cart">
-                    
-                <p
-                  size="lg"
-                  startContent={
-                    <div className="relative w-6 h-6">
-                      
-                      <NextImage src="/images/cartIcon.svg" />
-                    </div>
-                  }
-                >
-                  Cart
-                  <p>{cartitem?.length !== undefined ? cartitem.length : '0'}</p>
-                </p>
-              </Link>
+              <div
+      className="cursor-pointer bg-primary border border-gray-500 p-2 rounded"
+    >
+      <Link href="/cart" passHref>
+        <p className="flex items-center">
+          <div className="relative w-6 h-6">
+            {/* Adjust this part based on your actual content */}
+            <img src="/images/cartIcon.svg" alt="Cart Icon" className="w-full h-full" />
+          </div>
+          <p className="ml-2">Cart</p>
+          <p className="ml-2">{cartitem?.length !== undefined ? cartitem.length : '0'}</p>
+        </p>
+      </Link>
+    </div>
               {/* <div onClick={onOpenChange} className="font-semibold">login</div> */}
 
               <Dropdown placement="bottom-end">
@@ -129,13 +129,13 @@ const Navbar = () => {
         </div>
       </nav>
       {
-        user.token === ''??
+        user.token === ''?
         <div className="h-10 text-center bg-primary center">
         <h2 className="font-normal">
           Join Talkin Tacos Rewards, win $500! Be entered in a drawing to win on
           1/1
         </h2>
-      </div>
+      </div>:''
       }
       
       <Sidebar

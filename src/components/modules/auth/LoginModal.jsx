@@ -17,6 +17,7 @@ const LoginModal = ({ isOpen, onOpenChange, onClose }) => {
     try {
       const getError = await dispatch(signIn({email_or_phone: mail, password: password, restaurant_id: 248}));
       console.log('getError---', getError);
+      onOpenChange();
       // reset();
       // if (getError) setError('afterSubmit', { message: getError })
     } catch (error) {
@@ -33,7 +34,7 @@ const LoginModal = ({ isOpen, onOpenChange, onClose }) => {
         onOpenChange={onOpenChange}
         isDismissable={false}
         backdrop="blur"
-        onClose={(e) => e.stopPropagation()}
+        onClose={onClose}
       >
         <div className="pt-10 pb-20">
           <div className="pb-4 border-b border-gray-500">

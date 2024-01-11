@@ -13,7 +13,6 @@ const CartMain = () => {
     item: cartitem.find((item) => item.id === id),
     quantity: cartitem.filter((item) => item.id === id).length,
   }));
-  console.log("🚀 ~ CartMain ~ uniqueItems:uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu", uniqueItems)
   return (
     <>
       <div className="container mt-10">

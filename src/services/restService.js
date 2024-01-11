@@ -7,18 +7,18 @@
 //     // headers: {'X-Custom-Header': 'foobar'}
 // });
 import { setLoading } from '@/redux/slices/user'
-// import { store } from '@/redux/store'
+import { store } from '@/redux/store'
 import api from './api'
 export const post = async (url, data, loading = true, auth = true) => {
     // const { headers } = await header(loading, auth)
-    // store.dispatch(setLoading(loading))
+    store.dispatch(setLoading(loading))
     return new Promise((resolve, reject) => {
         api.post(url, data).then(res => {
           resolve(res)
         }).catch(err => {
           reject(err)
         }).finally(() => {
-        //   store.dispatch(setLoading(false))
+          store.dispatch(setLoading(false))
         })
     })
 }
