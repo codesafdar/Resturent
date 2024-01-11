@@ -1,8 +1,8 @@
 import NextImage from "@/components/common/NextImage";
 import { Heart, PlusCircle } from "lucide-react";
 
-const PopularItemsCard = ({papulerProduct}) => {
-  console.log("data PAPULER", papulerProduct);
+const PopularItemsCard = ({object}) => {
+  console.log("data PAPULER", object);
   return (
     <>
       <div className="relative">
@@ -13,16 +13,16 @@ const PopularItemsCard = ({papulerProduct}) => {
           />
         </div>
         <div className="absolute top-0 h-full w-full bg-[rgba(0,0,0,0.42)] flex flex-col justify-end p-4 space-y-1 rounded-lg">
-          <h3 className="text-sm font-bold">#1 Popular Item</h3>
-          <h2 className="text-xl font-bold">Birria</h2>
+          <h3 className="text-sm font-bold">{object.popularity_count} Popular Item</h3>
+          <h2 className="text-xl font-bold">{object.name}</h2>
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
               <PlusCircle size={20} />
-              <h4 className="font-bold font-sm">$14.99</h4>
+              <h4 className="font-bold font-sm">{object.price}</h4>
             </div>
             <div className="flex items-center gap-1">
               <Heart size={20} />
-              <h4 className="font-bold font-sm">73</h4>
+              <h4 className="font-bold font-sm">{object.id}</h4>
             </div>
           </div>
         </div>

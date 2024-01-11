@@ -24,7 +24,7 @@ const config = {
       sm: "576px",
       md: "768px",
       lg: "992px",
-      xl: "1280px",
+      xl: "auto",
       "2xl": "1440px",
       "3xl": "1600px",
     },

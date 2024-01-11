@@ -5,8 +5,8 @@ import CartButton from "@/components/common/CartButton";
 const RecommendedMenuCard = ({ className }) => {
   return (
     <>
-      <div className={`border border-gray-600 rounded-xl ${className}`}>
-        <div className="relative h-[200px] w-full">
+      <div className={`border border-gray-300 rounded-xl w-[60%] h-[230px] ${className}`}>
+        <div className="relative h-[100px]">
           <NextImage
             src="/images/homeSection1.png"
             className="object-cover rounded-t-xl"

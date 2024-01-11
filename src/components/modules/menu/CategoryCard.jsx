@@ -12,19 +12,18 @@ const CategoryCard = ({obj}) => {
     <>
       <div onClick={handleopn} className="border-b md:border border-[#5E5E5E] md:rounded-lg flex justify-between gap-6 md:h-[200px] pb-6 md:pb-0">
         <div className="md:p-6">
-          <h3 className="font-bold">Birria</h3>
+          <h3 className="font-bold">{obj.name??'N/A'}</h3>
           <p className="mt-1 text-sm text-gray-300 line-clamp-2">
-            (3 Tacos) Beef birria, Oaxaca cheese, onions, and cilantro. (served
-            with consommé)
+      {obj.description??'N/A'}
           </p>
           <div className="flex items-center gap-2 mt-4">
             <div className="flex items-center gap-1">
               <PlusCircle size={20} className="text-primary" />
-              <h4 className="font-bold font-sm">$14.99</h4>
+              <h4 className="font-bold font-sm">{obj.price??'N/A'}</h4>
             </div>
             <div className="flex items-center gap-1">
               <Heart size={20} />
-              <h4 className="font-bold font-sm">73</h4>
+              <h4 className="font-bold font-sm">{obj.id??'N/A'}</h4>
             </div>
           </div>
         </div>

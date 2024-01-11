@@ -1,17 +1,29 @@
+"use client"
 import React from "react";
 import CartItemsCard from "@/components/modules/cart/CartItemsCard";
 import RecommendedMenuCard from "@/components/modules/menu/RecommendedMenuCard";
 import ButtonUI from "@/components/common/ButtonUI";
 import { Checkbox, Chip, RadioGroup, Radio } from "@nextui-org/react";
+import { useSelector } from "@/redux/store";
 
 const CartMain = () => {
+  const cartitem = useSelector(state => state.cart?.cartitem);
+  console.log("🚀 ~ CartMain ~ cartitem:", cartitem)
+  const uniqueItems = Array.from(new Set(cartitem.map((item) => item.id))).map((id) => ({
+    item: cartitem.find((item) => item.id === id),
+    quantity: cartitem.filter((item) => item.id === id).length,
+  }));
+  console.log("🚀 ~ CartMain ~ uniqueItems:uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu", uniqueItems)
   return (
     <>
       <div className="container mt-10">
         <div className="grid grid-cols-2 gap-10">
           <div className="space-y-5">
-            <CartItemsCard />
-            <CartItemsCard />
+          {uniqueItems.map(({ item, quantity }) => (
+              <CartItemsCard key={item.id} obj={item} quantity={quantity} />
+            ))}
+            {/* <CartItemsCard />
+            <CartItemsCard /> */}
           </div>
           <div className="rounded-2xl bg-[#232323] p-6">
             <h2 className="text-2xl font-semibold">People Also Like</h2>

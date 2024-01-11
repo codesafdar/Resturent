@@ -7,7 +7,7 @@ import userReducer from './slices/user';
 import productReducer from './slices/product';
 import categoryReducer from './slices/category';
 import papularReducer from './slices/papular';
-// import orderReducer from './slices/order';
+import cartReducer from './slices/cart';
 // ----------------------------------------------------------------------
 
 const rootPersistConfig = {
@@ -30,6 +30,7 @@ const rootReducer = combineReducers({
   product: productReducer,
   category: categoryReducer,
   papular: papularReducer,
+  cart: cartReducer
 });
 
 export { rootPersistConfig, rootReducer };

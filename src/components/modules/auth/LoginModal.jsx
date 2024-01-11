@@ -5,7 +5,7 @@ import ButtonUI from "@/components/common/ButtonUI";
 import { signIn } from "@/redux/slices/user";
 import { dispatch, useSelector } from "@/redux/store";
 
-const LoginModal = ({ isOpen, onOpenChange }) => {
+const LoginModal = ({ isOpen, onOpenChange, onClose }) => {
 
   const loading = useSelector(state => state.user.isLoading)
   
@@ -33,6 +33,7 @@ const LoginModal = ({ isOpen, onOpenChange }) => {
         onOpenChange={onOpenChange}
         isDismissable={false}
         backdrop="blur"
+        onClose={(e) => e.stopPropagation()}
       >
         <div className="pt-10 pb-20">
           <div className="pb-4 border-b border-gray-500">

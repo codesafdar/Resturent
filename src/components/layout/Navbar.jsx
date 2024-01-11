@@ -13,19 +13,20 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { navList } from "@/config/data";
-import LoginModal from "../modules/auth/LoginModal";
+// import LoginModal from "../modules/auth/LoginModal";
 import RegisterModal from "../modules/auth/RegisterModal";
 import VerifyPhoneModal from "../modules/auth/VerifyPhoneModal";
 import CreateAccountModal from "../modules/auth/CreateAccountModal";
 import ButtonUI from "../common/ButtonUI";
 import { Menu } from "lucide-react";
 import Sidebar from "./Sidebar";
-import { dispatch } from "@/redux/store";
+import { dispatch, useSelector } from "@/redux/store";
 import { signOut } from "@/redux/slices/user";
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+  const cartitem = useSelector(state => state.cart?.cartitem);
+  const user = useSelector(state => state.user);
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure({
     defaultOpen: false,
   });
@@ -73,16 +74,19 @@ const Navbar = () => {
                 </DropdownMenu>
               </Dropdown>
               <Link href="/cart">
-                <ButtonUI
+                    
+                <p
                   size="lg"
                   startContent={
                     <div className="relative w-6 h-6">
+                      
                       <NextImage src="/images/cartIcon.svg" />
                     </div>
                   }
                 >
                   Cart
-                </ButtonUI>
+                  <p>{cartitem?.length !== undefined ? cartitem.length : '0'}</p>
+                </p>
               </Link>
               {/* <div onClick={onOpenChange} className="font-semibold">login</div> */}
 
@@ -124,21 +128,25 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <div className="h-10 text-center bg-primary center">
+      {
+        user.token === ''??
+        <div className="h-10 text-center bg-primary center">
         <h2 className="font-normal">
           Join Talkin Tacos Rewards, win $500! Be entered in a drawing to win on
           1/1
         </h2>
       </div>
+      }
+      
       <Sidebar
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
       />
-      <LoginModal
+      {/* <LoginModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         onClose={onClose}
-      />
+      /> */}
       {/* <RegisterModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}

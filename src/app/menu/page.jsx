@@ -73,11 +73,11 @@ const MenuMain = () => {
       </div>
       <div className="pt-24">
         <div className="container">
-          <h2 className="text-lg font-bold">Discounts</h2>
+          {/* <h2 className="text-lg font-bold">Discounts</h2>
           <div className="grid gap-6 mt-6 md:grid-cols-2 md:gap-14">
             <DiscountCard />
             <DiscountCard />
-          </div>
+          </div> */}
           <div className="mt-6">
             {
               category?.map((object, index) => (
@@ -104,7 +104,6 @@ const MenuMain = () => {
           </div>
         </div>
       </div>
-      <MenuDetailsModal />
     </>
   );
 };

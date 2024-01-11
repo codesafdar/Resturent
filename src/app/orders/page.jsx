@@ -8,8 +8,8 @@ const OrdersMain = () => {
   const dispatch = useDispatch();
   const orderList = useSelector(state => state.product?.popularProduct);
   const orderList1 = useSelector(state => state);
-  console.log("🚀 ~ OrdersMain ~ orderList1:rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr1111111111111111", orderList1)
-  console.log("🚀 ~ file: page.jsx:9 ~ OrdersMain ~ orderListlllllllllllllllllllllllllllll:", orderList)
+  console.log("🚀 ~ OrdersMain ~ orderList1:cccccccccccccccccccccccccccccccccc111111", orderList1)
+  console.log("🚀 ~ file: page.jsx:9 ~ OrdersMain ~ dcccccccccccccccccccccccccccccccccc2:", orderList)
   useEffect(() => {
     dispatch(fetchOrderList());
   }, [dispatch]);

@@ -1,8 +1,9 @@
+"use client"
 import React from "react";
 import CartButton from "@/components/common/CartButton";
 import NextImage from "@/components/common/NextImage";
 
-const CartItemsCard = () => {
+const CartItemsCard = ({obj, quantity}) => {
   return (
     <>
       <div className="flex items-center justify-between p-6 rounded-2xl bg-[#232323]">
@@ -14,12 +15,12 @@ const CartItemsCard = () => {
             />
           </div>
           <div className="space-y-1">
-            <h3 className="text-xl font-semibold">Chicken Wrap</h3>
-            <h6 className="text-gray-300">$ 16.99</h6>
+            <h3 className="text-xl font-semibold">{obj.name}</h3>
+            <h6 className="text-gray-300">{obj.price*quantity}</h6>
           </div>
         </div>
         <div className="flex items-center justify-center h-16 border border-gray-600 bg-[#161616] rounded px-8">
-          <CartButton />
+          <CartButton quantity={quantity} />
         </div>
       </div>
     </>
