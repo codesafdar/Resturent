@@ -13,7 +13,7 @@ import MenuDetailsModal from "@/components/modules/menu/MenuDetailsModal";
 import { useDispatch, useSelector } from "react-redux";
 import ConfinServices from "@/config/api/config.api";
 import { fetchCategoriesAllProducts } from "@/redux/slices/category";
-import { fetchPopularProduct } from "@/redux/slices/papular";
+import { fetchBeverageProduct, fetchPopularProduct, fetchRecomendedProduct } from "@/redux/slices/papular";
 // import { fetchPopularProduct, fetchCategoriesAllProducts } from "../redux/productSlice"; // Import your product slice actions
 const MenuMain = () => {
   const ggg = useSelector((state) => state);
@@ -24,10 +24,25 @@ const MenuMain = () => {
   const category = useSelector((state) => state.category?.categoriesAllProducts);
   const [categoryRefs, setCategoryRefs] = useState([]);
   const resturent_id = 8;
-  useEffect(() => {
+
+  const getpapulerproduct = () =>{
     dispatch(fetchPopularProduct(resturent_id)); // Dispatch the action to fetch popular products
     dispatch(fetchCategoriesAllProducts(resturent_id)); 
     // configdata();// Dispatch the action to fetch category products
+  }
+  const recomendedProducts = useSelector((state) => state.papular?.recomendedProducts);
+  console.log("🚀 ~ CartMain ~ recomendedProducts:", recomendedProducts)
+  const beveregeProducts = useSelector((state) => state.papular?.beveregeProducts);
+  console.log("🚀 ~ CartMain ~ beveregeProducts:", beveregeProducts)
+
+  const getRecomendedandBeverageProduct = () =>{
+    dispatch(fetchRecomendedProduct(resturent_id)); // Dispatch the action to fetch popular products
+    dispatch(fetchBeverageProduct(resturent_id)); 
+    // configdata();// Dispatch the action to fetch category products
+  }
+  useEffect(() => {
+    getpapulerproduct();
+    getRecomendedandBeverageProduct();
   }, [dispatch, resturent_id]);
 
   useEffect(() => {

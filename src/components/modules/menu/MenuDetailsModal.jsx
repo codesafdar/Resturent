@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ModalUI from "@/components/common/ModalUI";
 import NextImage from "@/components/common/NextImage";
 import RecommendedMenuCard from "./RecommendedMenuCard";
@@ -10,12 +10,17 @@ import { dispatch, useSelector } from "@/redux/store";
 import { fetchcartList } from "@/redux/slices/cart";
 import { useDisclosure } from "@nextui-org/react";
 import LoginModal from "../auth/LoginModal";
+import BeverageMenuCard from "./BeveragePro";
 
 const MenuDetailsModal = ({ isopn, setisopn, obj }) => {
-  const cartList = useSelector(state => state);
-  // const [isopen, setisopen]=useState(false)
-  console.log("🚀 ~ MenuDetailsModal ~ orderList:cccccccccccccccccccccccccccccccccccc1", cartList)
-  console.log("🚀 ~ MenuDetailsModal ~ obj:", obj)
+  const cartitem = useSelector(state => state.cart?.cartitem);
+  console.log("🚀 ~ MenuDetailsModal ~ cartitemkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk:", cartitem)
+
+  const recomended = useSelector(state => state.papular.recomendedProducts.products);
+  console.log("🚀 ~ MenuDetailsModal ~ recomended:", recomended)
+  const beverage = useSelector(state => state.papular.beveregeProducts.products);
+  console.log("🚀 ~ MenuDetailsModal ~ beverage:", beverage)
+  
   const user = useSelector(state => state.user);
 
   const { isOpen, onOpen, onClose,  onOpenChange } = useDisclosure({
@@ -35,6 +40,7 @@ const MenuDetailsModal = ({ isopn, setisopn, obj }) => {
     setisopn(false);
   };
   console.log('isOpen---', isOpen);
+ 
   return (
     <>
       <ModalUI isOpen={isopn} size="full" hideCloseButton={true}>
@@ -70,20 +76,31 @@ const MenuDetailsModal = ({ isopn, setisopn, obj }) => {
           <div className="mt-6">
             <h2 className="text-2xl font-semibold">Recommended Sides</h2>
             <div className="grid grid-cols-4 md:grid-cols-5  mt-3 md:max-w-[100%]">
+              {
+                recomended.map((obj, ind)=>(
+                  <RecommendedMenuCard obj={obj}/>
+
+                ))
+              }
+              {/* <RecommendedMenuCard />
               <RecommendedMenuCard />
-              <RecommendedMenuCard />
-              <RecommendedMenuCard />
-              <RecommendedMenuCard />
+              <RecommendedMenuCard /> */}
             </div>
           </div>
 
           <div className="mt-6">
             <h2 className="text-2xl font-semibold">Recommended Beverages</h2>
             <div className="grid grid-cols-1 md:grid-cols-5  mt-3 md:max-w-[100%]">
+            {
+                beverage.map((obj, ind)=>(
+                  <BeverageMenuCard obj={obj}/>
+
+                ))
+              }
+              {/* <RecommendedMenuCard />
               <RecommendedMenuCard />
               <RecommendedMenuCard />
-              <RecommendedMenuCard />
-              <RecommendedMenuCard />
+              <RecommendedMenuCard /> */}
             </div>
           </div>
 

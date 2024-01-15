@@ -6,6 +6,8 @@ const initialState = {
     isLoading: false,
     error: null,
     popularProducts: [],
+    recomendedProducts: [],
+    beveregeProducts: [],
 };
 const papularSlice = createSlice({
     name: 'papular',
@@ -13,6 +15,12 @@ const papularSlice = createSlice({
     reducers: {
         getPopularProductSuccess(state, { payload }) {
             state.popularProducts = payload;
+        },
+        getrecomendedProductSuccess(state, { payload }) {
+            state.recomendedProducts = payload;
+        },
+        getbeverageProductSuccess(state, { payload }) {
+            state.beveregeProducts = payload;
         },
         hasError(state, { payload }) {
             state.isLoading = false;
@@ -25,6 +33,8 @@ export default papularSlice.reducer;
 export const {
     setLoading,
     getPopularProductSuccess,
+    getrecomendedProductSuccess,
+    getbeverageProductSuccess,
     hasError,
 } = papularSlice.actions;
 
@@ -35,6 +45,24 @@ export const fetchPopularProduct = (id) => async (dispatch) => {
         const response = await ProductService.getPapolerProduct(id);
         console.log("🚀 ~ file: papular.js:36 ~ fetchPopularProduct ~ response:rrrrrr", response.data.products)
         dispatch(getPopularProductSuccess(response.data.products));
+    } catch (error) {
+        dispatch(hasError(error));
+    }
+};
+export const fetchRecomendedProduct = (id) => async (dispatch) => {
+    try {
+        const response = await ProductService.getRecomendedProduct(id);
+        console.log("🚀 ~ file: papular.js:36 ~ fetchPopularProduct ~ response:rrrrrr", response.products)
+        dispatch(getrecomendedProductSuccess(response.data));
+    } catch (error) {
+        dispatch(hasError(error));
+    }
+};
+export const fetchBeverageProduct = (id) => async (dispatch) => {
+    try {
+        const response = await ProductService.getBeverageProduct(id);
+        console.log("🚀 ~ file: papular.js:36 ~ fetchPopularProduct ~ response:rrrrrr", response.products)
+        dispatch(getbeverageProductSuccess(response.data));
     } catch (error) {
         dispatch(hasError(error));
     }

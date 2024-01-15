@@ -5,9 +5,12 @@ const ProductService = {
   getAllProducts: (id: string) => {
     return get(`${ENDPOINTS.GET_ALL_POPULAR_PRODUCT}=${id}`);
   },
-  // getSingleProduct: (id: string) => {
-  //   return get(`${GET_ALL_PRODUCTS_ENDPOINT}/${id}`);
-  // },
+  getRecomendedProduct: (id: string) => {
+    return get(`${ENDPOINTS.GET_RECOMMENDED_SIDE}=${id}`);
+  },
+  getBeverageProduct: (id: string) => {
+    return get(`${ENDPOINTS.GET_RECOMMENDED_BEVERAGES}=${id}`);
+  },
   getPapolerProduct: (id: string) => {
     return get(`${ENDPOINTS.GET_POPULAR_PRODUCT}=${id}`); 
   },

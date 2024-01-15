@@ -2,8 +2,10 @@
 import React from "react";
 import CartButton from "@/components/common/CartButton";
 import NextImage from "@/components/common/NextImage";
+import { useSelector } from "@/redux/store";
 
 const CartItemsCard = ({obj, quantity}) => {
+  const cartitem = useSelector(state => state.cart?.cartitem);
   return (
     <>
       <div className="flex items-center justify-between p-6 rounded-2xl bg-[#232323]">
@@ -20,7 +22,7 @@ const CartItemsCard = ({obj, quantity}) => {
           </div>
         </div>
         <div className="flex items-center justify-center h-16 border border-gray-600 bg-[#161616] rounded px-8">
-          <CartButton quantity={quantity} />
+          <CartButton obj={obj} quantity={quantity}/>
         </div>
       </div>
     </>
