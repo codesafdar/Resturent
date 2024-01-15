@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { refreshTokenApi, signInApi, signOutApi } from '@/api/authApi';
+import { refreshTokenApi, signInApi, signOutApi, signUpApi } from '@/api/authApi';
 // utils
 // import { dispatch } from '../store';
 import tokenService from '@/services/tokenService';
@@ -23,6 +23,10 @@ const slice = createSlice({
     },
 
     _signIn(state, {payload}) {
+      state.userInfo = payload.user
+      state.token = payload.token
+    },
+    _signUp(state, {payload}) {
       state.userInfo = payload.user
       state.token = payload.token
     },
@@ -50,6 +54,7 @@ const slice = createSlice({
 export default slice.reducer;
 export const {
   _signIn,
+  _signUp,
   _signOut,
   _refreshToken,
   setLoading,
@@ -77,7 +82,25 @@ export const signIn =  (data) => async (dispatch) => {
       dispatch(hasError(error));
     }
 }
+export const signUp =  (data) => async (dispatch) => {
+  // dispatch(setLoading(true));
+  try {
+    const response = await signUpApi(data)
+    console.log("88*********", response);
+    // return
+    const { user, token} = response.data
+    if (token) {
+      dispatch(_signUp(response.data))
+      tokenService.setUser(user)
+    } else {
+      return error
+    }
 
+  } catch (error) {
+    console.log("88*********error", error);
+    dispatch(hasError(error));
+  }
+}
 export const signOut =  (data) => async (dispatch) => {
     // const refreshToken = tokenService.getLocalRefreshToken()
     try {

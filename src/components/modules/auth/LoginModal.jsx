@@ -4,6 +4,7 @@ import InputUI from "@/components/common/InputUI";
 import ButtonUI from "@/components/common/ButtonUI";
 import { signIn } from "@/redux/slices/user";
 import { dispatch, useSelector } from "@/redux/store";
+import RegisterModal from "./RegisterModal";
 
 const LoginModal = ({ isOpen, onOpenChange, onClose }) => {
 
@@ -11,6 +12,7 @@ const LoginModal = ({ isOpen, onOpenChange, onClose }) => {
   
   const [mail, setMail] = useState('')
   const [password, setPassword] = useState('')
+  const [openR, setopenR] = useState(false)
 
   const loginUser = async () => {
     console.log('loading---', loading);
@@ -27,6 +29,9 @@ const LoginModal = ({ isOpen, onOpenChange, onClose }) => {
       // }
     }
   }
+ const openRegisterModel = () =>{
+  setopenR(true);
+ }
   return (
     <>
       <ModalUI
@@ -61,10 +66,12 @@ const LoginModal = ({ isOpen, onOpenChange, onClose }) => {
           </form>
           <h6 className="text-center text-[#828282] mt-5">
             Don’t have an account yet?{" "}
-            <span className="text-primary">Sign up</span>
+            <span onClick={openRegisterModel} className="text-primary">Sign up</span>
           </h6>
         </div>
       </ModalUI>
+
+      <RegisterModal openR={openR} setopenR={setopenR}/>
     </>
   );
 };
