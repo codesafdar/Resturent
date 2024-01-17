@@ -13,7 +13,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { navList } from "@/config/data";
-// import LoginModal from "../modules/auth/LoginModal";
+import LoginModal from "../modules/auth/LoginModal";
 import RegisterModal from "../modules/auth/RegisterModal";
 import VerifyPhoneModal from "../modules/auth/VerifyPhoneModal";
 import CreateAccountModal from "../modules/auth/CreateAccountModal";
@@ -24,14 +24,17 @@ import { dispatch, useSelector } from "@/redux/store";
 import { signOut } from "@/redux/slices/user";
 
 const Navbar = () => {
-
+  
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [open, setisOpn] = useState(false);
   const cartitem = useSelector(state => state.cart?.cartitem);
   const user = useSelector(state => state.user);
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure({
     defaultOpen: false,
   });
-
+const handleLogin = () =>{
+  onOpen();
+}
   const handleLogout = async () => {
     try {
       await dispatch(signOut())
@@ -110,9 +113,16 @@ const Navbar = () => {
                   <DropdownItem key="settings">
                     <Link href="/profile">My Settings</Link>
                   </DropdownItem>
+                  {
+                    user.token === ''?
+                    <DropdownItem onClick={handleLogin} key="logout" color="danger">
+                    Log In
+                  </DropdownItem>:
                   <DropdownItem onClick={handleLogout} key="logout" color="danger">
-                    Log Out
-                  </DropdownItem>
+                  Log Out
+                </DropdownItem>
+                  }
+                  
                 </DropdownMenu>
               </Dropdown>
             </div>
@@ -142,11 +152,11 @@ const Navbar = () => {
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
       />
-      {/* <LoginModal
+      <LoginModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         onClose={onClose}
-      /> */}
+      />
       {/* <RegisterModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}

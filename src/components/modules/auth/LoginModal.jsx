@@ -6,7 +6,7 @@ import { signIn } from "@/redux/slices/user";
 import { dispatch, useSelector } from "@/redux/store";
 import RegisterModal from "./RegisterModal";
 
-const LoginModal = ({ isOpen, onOpenChange, onClose }) => {
+const LoginModal = ({ isOpen, onOpenChange, onClose, openN }) => {
 
   const loading = useSelector(state => state.user.isLoading)
   
