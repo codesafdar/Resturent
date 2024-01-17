@@ -8,7 +8,7 @@ import { Checkbox } from "@nextui-org/react";
 import { X } from "lucide-react";
 import { useDispatch, useSelector } from "@/redux/store";
 import { signUp } from "@/redux/slices/user";
-const CreateAccountModal = ({ openR, setopenR }) => {
+const CreateAccountModal = ({ opncreate, setOpncreate }) => {
   const [restaurantId, setRestaurantId] = useState(8);
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
@@ -41,12 +41,12 @@ const CreateAccountModal = ({ openR, setopenR }) => {
     }
   };
   const handleclose = () => {
-    setopenR(false);
+    setOpncreate(false);
   }
   return (
     <>
       <ModalUI
-        isOpen={openR}
+        isOpen={opncreate}
         onOpenChange={onOpenChange}
         isDismissable={false}
         backdrop="blur"

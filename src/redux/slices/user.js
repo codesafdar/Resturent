@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { checkPhoneApi, refreshTokenApi, signInApi, signOutApi, signUpApi } from '@/api/authApi';
+import { checkPhoneApi, refreshTokenApi, signInApi, VerifyPhoneApi, signOutApi, signUpApi } from '@/api/authApi';
 // utils
 // import { dispatch } from '../store';
 import tokenService from '@/services/tokenService';
@@ -34,6 +34,10 @@ const slice = createSlice({
       state.userInfo = payload.user
       state.token = payload.token
     },
+    _verifyPhone(state, {payload}) {
+      state.userInfo = payload.user
+      state.token = payload.token
+    },
 
     _signOut(state) {
       state.token = ''
@@ -61,6 +65,7 @@ export const {
   _signUp,
   _signOut,
   _checkPhone,
+  _verifyPhone,
   _refreshToken,
   setLoading,
   getLabelsSuccess,
@@ -116,6 +121,25 @@ export const checkUp =  (data) => async (dispatch) => {
     if (response) {
       dispatch(_checkPhone(response.data))
       tokenService.setUser(user)
+    } else {
+      return error
+    }
+
+  } catch (error) {
+    console.log("88*********error", error);
+    dispatch(hasError(error));
+  }
+}
+export const Verify =  (data) => async (dispatch) => {
+  debugger;
+  // dispatch(setLoading(true));
+  try {
+    const response = await VerifyPhoneApi(data)
+    console.log("88*********", response);
+    // return
+    if (response) {
+      dispatch(_verifyPhone(response.data))
+      // tokenService.setUser(user)
     } else {
       return error
     }

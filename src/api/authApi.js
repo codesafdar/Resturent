@@ -1,5 +1,5 @@
 
-import { CHECKPHONE_ENDPOINT, LOGIN_ENDPOINT, SIGNUP_ENDPOINT } from "@/config/constant/endPoints"
+import { CHECKPHONE_ENDPOINT, VERIFYPHONE_ENDPOINT, LOGIN_ENDPOINT, SIGNUP_ENDPOINT } from "@/config/constant/endPoints"
 import { post } from "@/services/restService"
 
 export const signUpApi = (data) => {
@@ -8,6 +8,10 @@ export const signUpApi = (data) => {
 export const checkPhoneApi = (data) => {
     debugger;
     return post(CHECKPHONE_ENDPOINT, data)
+}
+export const VerifyPhoneApi = (data) => {
+    debugger;
+    return post(VERIFYPHONE_ENDPOINT, data)
 }
 export const signInApi = (data) => {
     return post(LOGIN_ENDPOINT, data)

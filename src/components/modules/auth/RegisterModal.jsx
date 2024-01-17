@@ -7,7 +7,7 @@ import { useDisclosure } from "@nextui-org/react";
 import { dispatch, useSelector } from "@/redux/store";
 import { checkUp } from "@/redux/slices/user";
 import VerifyPhoneModal from "./VerifyPhoneModal";
-
+import { X } from "lucide-react";
 const RegisterModal = ({ openR, setopenR }) => {
   const loading = useSelector((state) => state.user.isLoading);
   const [openRR, setopenRR] = useState(false)
@@ -33,7 +33,9 @@ const RegisterModal = ({ openR, setopenR }) => {
       console.error("Signup failed:", error);
     }
   };
-
+  const handleclose = () => {
+    setopenR(false);
+  }
   return (
     <>
       <ModalUI
@@ -41,8 +43,17 @@ const RegisterModal = ({ openR, setopenR }) => {
         onOpenChange={onOpenChange}
         isDismissable={false}
         backdrop="blur"
+        hideCloseButton={true}
       >
         <div className="pt-10 pb-20">
+        <ButtonUI
+            isIconOnly
+            color="default"
+            className="absolute rounded-none top-1 right-5"
+            onClick={handleclose}
+          >
+            <X />
+          </ButtonUI>
           <div className="pb-4 border-b border-gray-500">
             <h3 className="text-xl font-semibold">Sign Up</h3>
           </div>
@@ -64,7 +75,7 @@ const RegisterModal = ({ openR, setopenR }) => {
           </h6>
         </div>
       </ModalUI>
-      <VerifyPhoneModal openRR={openRR}  />
+      <VerifyPhoneModal openRR={openRR} setopenRR={setopenRR} mobile={mobile}  />
     </>
   );
 };
