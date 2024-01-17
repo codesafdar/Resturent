@@ -10,14 +10,14 @@ const LoginModal = ({ isOpen, onOpenChange, onClose, openN }) => {
 
   const loading = useSelector(state => state.user.isLoading)
   
-  const [mail, setMail] = useState('')
+  const [mobile, setMobile] = useState('')
   const [password, setPassword] = useState('')
   const [openR, setopenR] = useState(false)
 
   const loginUser = async () => {
     console.log('loading---', loading);
     try {
-      const getError = await dispatch(signIn({email_or_phone: mail, password: password, restaurant_id: 248}));
+      const getError = await dispatch(signIn({email_or_phone: mobile, password: password, restaurant_id: 249}));
       console.log('getError---', getError);
       onOpenChange();
       // reset();
@@ -47,10 +47,10 @@ const LoginModal = ({ isOpen, onOpenChange, onClose, openN }) => {
           </div>
           <form className="mt-20 space-y-10">
             <InputUI
-              onChange={setMail}
-              name="email"
-              label="Email"
-              placeholder="Enter email"
+              onChange={setMobile}
+              name="mobile"
+              label="Mobile Number"
+              placeholder="+1(111) 111-1111"
               placement="outside"
             />
             <InputUI

@@ -70,7 +70,7 @@ const RegisterModal = ({ openR, setopenR }) => {
             </ButtonUI>
           </form>
           <h6 className="text-center text-[#828282] mt-5">
-            Don’t have an account yet?{" "}
+            Already have an account yet?{" "}
             <span className="text-primary">Log In</span>
           </h6>
         </div>

@@ -77,9 +77,15 @@ const handleLogin = () =>{
                   <DropdownItem key="edit">Edit file</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
+              {
+                user.token === ''?
+                <div onClick={onOpenChange} className="font-semibold">login</div>:''
+              }
+              
               <div
       className="cursor-pointer bg-primary border border-gray-500 p-2 rounded"
     >
+
       <Link href="/cart" passHref>
         <p className="flex items-center">
           <div className="relative w-6 h-6">
@@ -91,9 +97,9 @@ const handleLogin = () =>{
         </p>
       </Link>
     </div>
-              {/* <div onClick={onOpenChange} className="font-semibold">login</div> */}
-
-              <Dropdown placement="bottom-end">
+    {
+                user.token === ''?'':
+                <Dropdown placement="bottom-end">
                 <DropdownTrigger>
                   <Avatar
                     isBordered
@@ -113,18 +119,16 @@ const handleLogin = () =>{
                   <DropdownItem key="settings">
                     <Link href="/profile">My Settings</Link>
                   </DropdownItem>
-                  {
-                    user.token === ''?
-                    <DropdownItem onClick={handleLogin} key="logout" color="danger">
-                    Log In
-                  </DropdownItem>:
                   <DropdownItem onClick={handleLogout} key="logout" color="danger">
                   Log Out
                 </DropdownItem>
-                  }
+                 
                   
                 </DropdownMenu>
               </Dropdown>
+              }
+
+            
             </div>
           </div>
           <div className="block md:hidden">
