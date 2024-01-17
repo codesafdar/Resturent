@@ -6,6 +6,7 @@ const API_CATEGORY_BASE_URL = "/api/v1/categories/";
 const API_ORDER_BASE_URL = "/api/v1/customer/order/";
 export const LOGIN_ENDPOINT = "/api/v1/auth/login";
 export const SIGNUP_ENDPOINT = "/api/v1/auth/registration";
+export const CHECKPHONE_ENDPOINT = "/api/v1/auth/check-phone";
 export const ENDPOINTS = {
   // config ENDPOINT
   GET_CONFIG: `${CONFIG_BASE_URL}config?restaurant_id`,

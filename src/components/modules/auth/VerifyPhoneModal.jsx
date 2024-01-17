@@ -4,11 +4,11 @@ import InputUI from "@/components/common/InputUI";
 import ButtonUI from "@/components/common/ButtonUI";
 import NextImage from "@/components/common/NextImage";
 
-const VerifyPhoneModal = ({ isOpen, onOpenChange }) => {
+const VerifyPhoneModal = ({ openRR, isOpen, onOpenChange }) => {
   return (
     <>
       <ModalUI
-        isOpen={isOpen}
+        isOpen={openRR}
         onOpenChange={onOpenChange}
         isDismissable={false}
         backdrop="blur"
