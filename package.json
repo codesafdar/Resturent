@@ -14,11 +14,13 @@
     "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.4",
     "framer-motion": "^10.16.16",
+    "libphonenumber-js": "^1.10.53",
     "lucide-react": "^0.303.0",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
     "react-redux": "^9.0.4",
+    "react-toastify": "^10.0.3",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0"
   },
