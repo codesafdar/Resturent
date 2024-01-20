@@ -8,11 +8,14 @@ import { dispatch, useSelector } from "@/redux/store";
 import { checkUp } from "@/redux/slices/user";
 import VerifyPhoneModal from "./VerifyPhoneModal";
 import { X } from "lucide-react";
+import { toast } from 'react-toastify';
 const RegisterModal = ({ openR, setopenR }) => {
   const loading = useSelector((state) => state.user.isLoading);
   const [openRR, setopenRR] = useState(false)
   const [mobile, setMobile] = useState("");
   const [restaurantId, setRestaurantId] = useState(8);
+  const [mobileError, setMobileError] = useState('');
+
   const { isOpen, onClose, onOpenChange } = useDisclosure({
     defaultOpen: false,
   });
@@ -20,6 +23,14 @@ const RegisterModal = ({ openR, setopenR }) => {
     phone:mobile,
     restaurant_id:restaurantId,
   }
+  const validateMobileInput = (value) => {
+    // const formattedValue = new AsYouType('US').input(value);
+    setMobile(value);
+
+    // Validate for allowed characters (digits, '+', '(', ')', '-')
+    const isValid = /^[0-9()+\- ]*$/.test(value);
+    setMobileError(isValid ? '' : 'Invalid characters in the mobile number');
+  };
   const handleSignup = async () => {
     debugger;
     try {
@@ -27,6 +38,7 @@ const RegisterModal = ({ openR, setopenR }) => {
       console.log("🚀 ~ handleSignup ~ response:ppppppppppppppppppppppphhhhhhhhhhhhh", response)
      
         setopenRR(true)
+        toast.success('SignUp successful Please Verify Mobile No!', { position: 'top-center' });
       
       // setopenR(false);
     } catch (error) {
@@ -59,7 +71,7 @@ const RegisterModal = ({ openR, setopenR }) => {
           </div>
           <form className="mt-20 space-y-8">
             <InputUI
-              onChange={setMobile}
+              onChange={(value) => { validateMobileInput(value); }}
               name="mobile"
               label="Mobile Number"
               placeholder="+1(111) 111-1111"

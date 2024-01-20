@@ -11,6 +11,7 @@ import { fetchcartList } from "@/redux/slices/cart";
 import { useDisclosure } from "@nextui-org/react";
 import LoginModal from "../auth/LoginModal";
 import BeverageMenuCard from "./BeveragePro";
+import { toast } from 'react-toastify';
 
 const MenuDetailsModal = ({ isopn, setisopn, obj }) => {
   const cartitem = useSelector(state => state.cart?.cartitem);
@@ -33,6 +34,8 @@ const MenuDetailsModal = ({ isopn, setisopn, obj }) => {
       onOpen(); // Open the login modal
     } else {
       dispatch(fetchcartList(obj));
+      toast.success('Add Product Successfully!', { position: 'top-center' });
+
     }
   };
 

@@ -8,6 +8,8 @@ import { Checkbox } from "@nextui-org/react";
 import { X } from "lucide-react";
 import { useDispatch, useSelector } from "@/redux/store";
 import { signUp } from "@/redux/slices/user";
+import { toast } from 'react-toastify';
+
 const CreateAccountModal = ({ opncreate, setOpncreate }) => {
   const [restaurantId, setRestaurantId] = useState(8);
   const [fname, setFname] = useState("");
@@ -20,6 +22,28 @@ const CreateAccountModal = ({ opncreate, setOpncreate }) => {
   const { isOpen, onClose, onOpenChange } = useDisclosure({
     defaultOpen: false,
   });
+  const validateEmail = (value) => {
+    // Add your email validation logic here
+    // Example: Check if the email is valid using a regular expression
+    setEmail(value);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
+  };
+  
+  const validateMobile = (value) => {
+    // Add your mobile validation logic here
+    // Example: Check if the mobile number has a valid format
+    setMobile(value);
+    const mobileRegex = /^[+]?[0-9()-\s]*$/;
+    return mobileRegex.test(value);
+  };
+  
+  const validatePassword = (value) => {
+    setPassword(value);
+    // Add your password validation logic here
+    // Example: Check if the password meets certain criteria (length, complexity, etc.)
+    return value.length >= 6; // Adjust the criteria as needed
+  };
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.user.isLoading);
   const data = {
@@ -32,9 +56,28 @@ const CreateAccountModal = ({ opncreate, setOpncreate }) => {
     referral_code:rcode
   }
   const handleSignup = async () => {
+    
     try {
+         // Perform input validations
+    if (!validateEmail(email)) {
+      toast.error('Invalid email format');
+      return;
+    }
+
+    if (!validateMobile(mobile)) {
+      toast.error('Invalid mobile number format');
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      toast.error('Password must be at least 6 characters long');
+      return;
+    }
+
       const response = dispatch(signUp(data));
       console.log("🚀 ~ handleSignup ~ response:", response)
+      toast.success('Account Created successful!', { position: 'top-center' });
+
       setopenR(false);
     } catch (error) {
       console.error("Signup failed:", error);
@@ -81,14 +124,14 @@ const CreateAccountModal = ({ opncreate, setOpncreate }) => {
               placement="outside"
             />
             <InputUI
-             onChange={setEmail}
+             onChange={(value) => { validateEmail(value); }}
               name="email"
               label="Email"
               placeholder="Enter Email"
               placement="outside"
             />
             <InputUI
-             onChange={setMobile}
+             onChange={(value) => { validateMobile(value); }}
               name="mobile"
               label="Mobile Number"
               placeholder="+1(111) 111-1111"
@@ -102,7 +145,7 @@ const CreateAccountModal = ({ opncreate, setOpncreate }) => {
               placement="outside"
             />
             <InputUI
-             onChange={setPassword}
+             onChange={(value) => { validatePassword(value); }}
               name="password"
               label="Password"
               placeholder="Enter Password"

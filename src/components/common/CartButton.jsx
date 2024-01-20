@@ -3,6 +3,7 @@ import { Button } from "@nextui-org/react";
 import { Minus, Plus } from "lucide-react";
 import { useDispatch, useSelector } from "@/redux/store";
 import { fetchcartList, dicscartList } from "@/redux/slices/cart";
+import { toast } from 'react-toastify';
 
 const CartButton = ({ size, obj, quantity }) => {
   // const cartitem = useSelector(state => state.cart?.cartitem);
@@ -22,6 +23,8 @@ const CartButton = ({ size, obj, quantity }) => {
   const addcartitem = async () => {
     setCount(count + 1); // Fix: Use setCount with the updated value
     dispatch(fetchcartList(obj));
+    toast.success('Add Product Successfully!', { position: 'top-center' });
+
   };
   // const cartitem = useSelector(state => state.cart?.cartitem);
   // console.log("🚀 ~ CartMain ~ cartitem:", cartitem)

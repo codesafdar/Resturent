@@ -6,6 +6,8 @@ import ButtonUI from "@/components/common/ButtonUI";
 import NextImage from "@/components/common/NextImage";
 import { X } from "lucide-react";
 import { Verify } from "@/redux/slices/user";
+import { toast } from 'react-toastify';
+
 import { dispatch, useSelector } from "@/redux/store";
 import CreateAccountModal from "./CreateAccountModal";
 const VerifyPhoneModal = ({ openRR, setopenRR, mobile, onOpenChange }) => {
@@ -42,6 +44,7 @@ const VerifyPhoneModal = ({ openRR, setopenRR, mobile, onOpenChange }) => {
       console.log("🚀 ~ handleSignup ~ response:ppppppphhhhhhvvvvvvvvvvvvvvvvvvvvvvvvvv", response)
      
       setOpncreate(true);
+      toast.success('Mobile No Is Verified!', { position: 'top-center' });
       
       // setopenR(false);
     } catch (error) {
